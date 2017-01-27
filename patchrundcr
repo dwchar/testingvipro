@@ -1,0 +1,51 @@
+tcp.validnode_checking = YES
+tcp.invited_nodes = (10.1.1.10, HEPHAESTUS)
+tcp.excluded_nodes = (10.1.1.99)
+
+$ORACLE_HOME\network\admin
+LSNRCTL> CHANGE_PASSWORD
+Old password: <enter>
+New password: password
+Reenter new password: password
+LSNCTL> SAVE_CONFIG
+
+$ORACLE_HOME\network\admin
+ADMIN_RESTRICTIONS_listener=on
+
+
+SID_LIST_LISTENER =
+  (SID_LIST =
+    (SID_DESC =
+      (SID_NAME = PLSExtProc)
+      (ORACLE_HOME = C:\ora9ias)
+      (PROGRAM = extproc)
+     )
+     (SID_DESC =
+      (GLOBAL_DBNAME = iasdb.HEPHAESTUS.ngssoftware.com)
+      (ORACLE_HOME = C:\ora9ias)
+      (SID_NAME = iasdb)
+     )
+   )
+   
+SID_LIST_LISTENER =
+  (SID_LIST =
+    (SID_DESC =
+      (GLOBAL_DBNAME = iasdb.HEPHAESTUS.ngssoftware.com)
+      (ORACLE_HOME = C:\ora9ias)
+      (SID_NAME = iasdb)
+    )
+  )
+)
+
+EXTPROC_CONNECTION_DATA =
+  (DESCRIPTION =
+  (ADDRESS_LIST =
+    (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROCO))
+  )
+  (CONNECT_DATA =
+    (SID = PLSExtProc)
+    (PRESENTATION = RO)
+  )
+)
+
+ALTER USER <USRENAME> IDENTIFIED BY <NEW PASSWORD>
